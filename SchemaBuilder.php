@@ -15,6 +15,17 @@ class SchemaBuilder
         $UserTable->setPrimaryKey(["uuid"]);
         // $UserTable->addColumn("deleted", "datetime", ["notnull" => false]);
         //^ Users should not be able to delete this, probably.
+        $UserTable->addColumn("username", "string"); // ["length" => 180, "notnull" => false?]
+        $UserTable->addColumn("username_canonical", "string"); // ["length" => 180, "notnull" => false?]
+        $UserTable->addColumn("email", "string"); // ["length" => 180, "notnull" => false?]
+        $UserTable->addColumn("email_canonical", "string"); // ["length" => 180, "notnull" => false?]
+        $UserTable->addColumn("enabled", "boolean");
+        $UserTable->addColumn("salt", "string"); // ["length" => 255, "notnull" => false?]
+        $UserTable->addColumn("password", "string"); // ["length" => 255, "notnull" => false?]
+        $UserTable->addColumn("last_login", "timestamp");
+        $UserTable->addColumn("confirmation_token", "string"); // ["length" => 180, "notnull" => false?]
+        $UserTable->addColumn("password_requested_at", "timestamp");
+        $UserTable->addColumn("roles", "text");
         return $UserTable;
     }
 }
