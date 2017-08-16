@@ -22,9 +22,9 @@ class SchemaBuilder
         $UserTable->addColumn("enabled", "boolean");
         $UserTable->addColumn("salt", "string"); // ["length" => 255, "notnull" => false?]
         $UserTable->addColumn("password", "string"); // ["length" => 255, "notnull" => false?]
-        $UserTable->addColumn("last_login", "timestamp");
+        $UserTable->addColumn("last_login", "datetime");
         $UserTable->addColumn("confirmation_token", "string"); // ["length" => 180, "notnull" => false?]
-        $UserTable->addColumn("password_requested_at", "timestamp");
+        $UserTable->addColumn("password_requested_at", "datetime");
         $UserTable->addColumn("roles", "text");
         return $UserTable;
     }
