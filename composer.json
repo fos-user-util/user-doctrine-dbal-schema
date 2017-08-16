@@ -1,0 +1,28 @@
+{
+    "name": "fos-user-util/user-doctrine-dbal-schema",
+    "description": "Doctrine DBAL Schema Builder for FOS User",
+    "keywords": ["user", "fos-user", "dbal", "doctrine-dbal", "database-schema", "snowyowl"],
+    "homepage": "https://github.com/fos-user-util/user-doctrine-dbal-schema",
+    "license": "MIT",
+    "authors": [
+        {"name": "Jean-bernard Addor"},
+        {"name": "Community", "homepage": "https://github.com/fos-user-util/user-doctrine-dbal-schema"}
+    ],
+    "require": {
+        "php": "^5.0",
+        "doctrine/dbal": "^2.5"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": { "FosUserUtil\\Doctrine\\DBAL\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
+
