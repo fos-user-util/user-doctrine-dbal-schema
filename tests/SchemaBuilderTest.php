@@ -10,6 +10,7 @@
  */
 
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\Table;
 use FosUserUtil\Doctrine\DBAL\SchemaBuilder;
 use PHPUnit\Framework\TestCase;
 
@@ -23,6 +24,14 @@ final class SchemaBuilderTest extends TestCase
         $this->assertInstanceOf(
             SchemaBuilder::class,
             new SchemaBuilder(new Schema())
+        );
+    }
+
+    public function testReturnsTable()
+    {
+        $this->assertInstanceOf(
+            Table::class,
+            (new SchemaBuilder(new Schema()))->UserTable()
         );
     }
 }
