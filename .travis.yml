@@ -45,7 +45,7 @@ before_install:
     }
   - wget https://phar.phpunit.de/phpunit-5.7.phar --output-document=.travis/bin/phpunit
   - chmod a+x .travis/bin/phpunit
-  - if [ $TRAVIS_PHP_VERSION != '5.4' ] || [ '$TRAVIS_PHP_VERSION != '5.5' ]; then
+  - if [ $TRAVIS_PHP_VERSION != '5.4' ] || [ $TRAVIS_PHP_VERSION != '5.5' ]; then
         PATH=.travis/bin/phpunit:$PATH;
     fi
 
