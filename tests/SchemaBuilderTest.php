@@ -36,4 +36,3 @@ final class SchemaBuilderTest extends TestCase
     }
 }
 
-// (new SchemaBuilder())->UserTable();
