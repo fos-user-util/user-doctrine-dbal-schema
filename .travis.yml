@@ -71,7 +71,9 @@ script:
         phpunit --bootstrap vendor/autoload.php tests;
     fi
   # This checks that the application doesn't use dependencies with known security vulnerabilities:
-  - .travis/bin/security-checker security:check --end-point=https://security.sensiolabs.org/check_lock
+  - if [[ $TRAVIS_PHP_VERSION != '5.4' ]]; then
+        .travis/bin/security-checker security:check --end-point=https://security.sensiolabs.org/check_lock;
+    fi
   # - for f in $(find ./vendor -name \*.php) ; do php -l $f > /dev/null ; done # Should be the last line of install but sometimes long to execute and little can be done for errors found.
 
 # inspirated from 
