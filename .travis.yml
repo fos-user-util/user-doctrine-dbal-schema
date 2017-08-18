@@ -33,8 +33,9 @@ before_install:
   # - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then composer require --dev friendsofphp/php-cs-fixer; fi
   - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
   - chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
-  # - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
-  - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update || {
+  - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
+  - php .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
+  - php .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update || {
         wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
         chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
     }
