@@ -4,7 +4,7 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache/files
-    - $HOME/.travis/cache
+    - $HOME/.travis/cache/$TRAVIS_PHP_VERSION
 
 addons:
   postgresql: "9.6"
@@ -26,10 +26,10 @@ matrix:
 before_install:
   - pwd
   - echo $HOME
+  - which composer
   - if [ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]; then phpenv config-rm xdebug.ini; fi
-  - for f in $(find . -path './vendor' -prune -o -name \*.php -print) ; do php -l $f ; done # Do this first!
   - composer self-update # May help using cache for php packages.
-  - install --directory .travis/cache/bin
+  - install --directory .travis/cache/$TRAVIS_PHP_VERSION/bin
   # - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then composer require --dev friendsofphp/php-cs-fixer; fi
   - if [ -f .travis/cache/bin/php-cs-fixer ]; then
       .travis/cache/bin/php-cs-fixer self-update;
@@ -37,16 +37,19 @@ before_install:
       wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer;
       chmod a+x .travis/cache/bin/php-cs-fixer;
     fi
+  - .travis/cache/bin/php-cs-fixer self-update
   - if ! .travis/cache/bin/php-cs-fixer self-update; then
       wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer;
       chmod a+x .travis/cache/bin/php-cs-fixer;
     fi
+  - .travis/cache/bin/php-cs-fixer self-update
   - .travis/cache/bin/php-cs-fixer self-update || {
         wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer;
         chmod a+x .travis/cache/bin/php-cs-fixer;
     }
-  # - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer
-  # - chmod a+x .travis/cache/bin/php-cs-fixer
+  - .travis/cache/bin/php-cs-fixer self-update
+  - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer
+  - chmod a+x .travis/cache/bin/php-cs-fixer
   - .travis/cache/bin/php-cs-fixer self-update
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --dbname=postgres --command='\l'
@@ -56,7 +59,6 @@ before_install:
   # - psql --help
 
 install:
-  - true
   - composer validate
   - composer install --no-scripts --no-progress --no-suggest
   # - cp config/parameters.yml.travis config/parameters.yml
@@ -69,6 +71,7 @@ install:
 before_script:
 
 script:
+  - for f in $(find . -path './vendor' -prune -o -name \*.php -print) ; do php -l $f ; done # Do this first!
   # this checks that the source code follows the Symfony Code Syntax rules
   # - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then ./vendor/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
   # - ./vendor/bin/simple-phpunit
