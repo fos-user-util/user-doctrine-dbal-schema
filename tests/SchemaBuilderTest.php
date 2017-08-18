@@ -21,8 +21,8 @@ final class SchemaBuilderTest extends TestCase
     public function testCanBeCreatedFromValidSchema()
     {
         $this->assertInstanceOf(
-            \SchemaBuilder::class,
-            new \SchemaBuilder(new Schema())
+            SchemaBuilder::class,
+            new SchemaBuilder(new Schema())
         );
     }
 }
