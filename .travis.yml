@@ -80,7 +80,7 @@ script:
         .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
     fi
   # - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then ./vendor/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
-  - if [ $TRAVIS_PHP_VERSION != '5.4' ] || [ $TRAVIS_PHP_VERSION != '5.5' ]; then
+  - if [ $TRAVIS_PHP_VERSION != '5.4' ] && [ $TRAVIS_PHP_VERSION != '5.5' ]; then
         phpunit --bootstrap vendor/autoload.php tests;
     fi
   # this checks that the application doesn't use dependencies with known security vulnerabilities
