@@ -43,10 +43,10 @@ before_install:
         chmod a+x .travis/bin/phpunit;
         PATH=.travis/bin:$PATH;
     fi
-  - {
+  - if true; then
         wget http://get.sensiolabs.org/security-checker.phar --output-document=.travis/bin/security-checker;
         chmod a+x .travis/bin/security-checker;
-    }
+    fi
 
 install:
   - composer validate
