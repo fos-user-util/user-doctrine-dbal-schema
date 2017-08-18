@@ -66,7 +66,7 @@ script:
   # - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then ./vendor/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
   - .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no # this checks that the source code follows the Symfony Code Syntax rules
   # - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then ./vendor/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
-  .travis/bin/phpunit tests
+  - .travis/bin/phpunit tests
   # - ./vendor/bin/simple-phpunit
   # - ./vendor/bin/simple-phpunit tests
   # - ./vendor/bin/simple-phpunit failing_tests || true
