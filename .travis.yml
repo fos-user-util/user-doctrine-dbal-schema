@@ -28,7 +28,9 @@ before_install:
   - for f in $(find . -path './vendor' -prune -o -name \*.php -print) ; do php -l $f ; done # Do this first!
   - composer self-update # May help using cache for php packages.
   - install --directory .travis/cache/bin
-  - aria2c wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer
+  - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer
+  - chmod a+x .travis/cache/bin/php-cs-fixer
+  - .travis/cache/bin/php-cs-fixer self-update
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --dbname=postgres --command='\l'
   - psql --dbname=travis_ci_test --command='\d'
