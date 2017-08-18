@@ -26,7 +26,6 @@ before_install:
   - pwd
   - echo $HOME
   - which composer
-  - phpunit --version
   - if [ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]; then phpenv config-rm xdebug.ini; fi
   - composer self-update # May help using cache for php packages.
   - install --directory .travis/bin
@@ -52,6 +51,7 @@ install:
   # - cp config/parameters.yml.travis config/parameters.yml
   - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
   - composer show
+  - phpunit --version
   # - chmod u+x ./bin/console
   # - ./bin/console
   # - ./bin/console dbal:list-databases
