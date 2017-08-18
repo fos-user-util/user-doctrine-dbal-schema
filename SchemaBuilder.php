@@ -22,7 +22,8 @@ class SchemaBuilder
         $this->schema = $schema;
     }
 
-    public function UserTable() {
+    public function UserTable()
+    {
         $UserTable = $this->schema->createTable('http_user');
         $UserTable->addColumn('uuid', 'guid');
         $UserTable->setPrimaryKey(['uuid']);
@@ -42,6 +43,7 @@ class SchemaBuilder
         $UserTable->addUniqueIndex(['confirmation_token'], 'confirmation_token_unique_index'); // name probably not needed
         $UserTable->addColumn('password_requested_at', 'datetime', ['notnull' => false]);
         $UserTable->addColumn('roles', 'array');
+
         return $UserTable;
     }
 }
