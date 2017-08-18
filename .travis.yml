@@ -33,7 +33,7 @@ before_install:
       .travis/cache/bin/php-cs-fixer self-update;
     else
       wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer;
-      chmod a+x .travis/cache/bin/php-cs-fixer
+      chmod a+x .travis/cache/bin/php-cs-fixer;
     fi
   # - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/bin/php-cs-fixer
   # - chmod a+x .travis/cache/bin/php-cs-fixer
