@@ -34,7 +34,7 @@ before_install:
   - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
   - chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
   - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
-  - php .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
+  - php .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update || true
   - php .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update || {
         wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
         chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
