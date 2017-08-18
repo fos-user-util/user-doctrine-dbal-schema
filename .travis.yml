@@ -4,7 +4,7 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache/files
-    - $HOME/.travis/cache/php$TRAVIS_PHP_VERSION
+    # - $HOME/.travis/cache
 
 addons:
   # postgresql: "9.6"
@@ -31,26 +31,26 @@ before_install:
   - composer self-update # May help using cache for php packages.
   - install --directory .travis/cache/php$TRAVIS_PHP_VERSION/bin
   # - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then composer require --dev friendsofphp/php-cs-fixer; fi
-  # - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
-  # - chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
+  - wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
+  - chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer
   # - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
   - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update || {
         wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
         chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
     }
-  - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
-  - if [ -f .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer ]; then
-      .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update;
-    else
-      wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
-      chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
-    fi
-  - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
-  - if ! .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update; then
-      wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
-      chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
-    fi
-  - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
+  # - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
+  # - if [ -f .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer ]; then
+  #     .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update;
+  #   else
+  #     wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
+  #     chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
+  #   fi
+  # - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
+  # - if ! .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update; then
+  #     wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
+  #     chmod a+x .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer;
+  #   fi
+  # - .travis/cache/php$TRAVIS_PHP_VERSION/bin/php-cs-fixer self-update
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --dbname=postgres --command='\l'
   - psql --dbname=travis_ci_test --command='\d'
