@@ -34,6 +34,7 @@ matrix:
 before_install:
   - pwd
   - echo $HOME
+  - echo $TRAVIS_PHP_VERSION
   - which composer
   - if [ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]; then phpenv config-rm xdebug.ini; fi
   - composer self-update # May help using cache for php packages.
