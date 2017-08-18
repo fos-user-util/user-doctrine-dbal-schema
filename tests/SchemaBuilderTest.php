@@ -35,4 +35,3 @@ final class SchemaBuilderTest extends TestCase
         );
     }
 }
-
