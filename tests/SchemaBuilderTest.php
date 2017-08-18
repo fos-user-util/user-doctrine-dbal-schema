@@ -1,7 +1,16 @@
 <?php
 
+/*
+ * This file is part of the FOS User Util package.
+ *
+ * (c) Jean-Bernard Addor
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use Doctrine\DBAL\Schema\Schema;
-// use FosUserUtil\Doctrine\DBAL\SchemaBuilder as  UserSchemaBuilder;
+use FosUserUtil\Doctrine\DBAL\SchemaBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,4 +27,4 @@ final class SchemaBuilderTest extends TestCase
     }
 }
 
-// (new UserSchemaBuilder())->UserTable();
+// (new SchemaBuilder())->UserTable();
