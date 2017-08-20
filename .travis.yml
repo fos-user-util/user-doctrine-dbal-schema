@@ -39,7 +39,11 @@ before_install:
         chmod a+x .travis/bin/php-cs-fixer;
     }
   - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
-        wget https://phar.phpunit.de/phpunit-5.7.phar --output-document=.travis/bin/phpunit;
+        if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then
+            wget https://phar.phpunit.de/phpunit-5.7.phar --output-document=.travis/bin/phpunit;
+        else
+            wget https://phar.phpunit.de/phpunit.phar --output-document=.travis/bin/phpunit;
+        fi
         chmod a+x .travis/bin/phpunit;
         PATH=.travis/bin:$PATH;
     fi
