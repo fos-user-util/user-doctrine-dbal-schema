@@ -30,8 +30,11 @@ before_install:
   - echo $HOME
   - echo $TRAVIS_PHP_VERSION
   - which composer
+  - ls /tmp
+  - php --ini
   - if [[ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]]; then
         cat /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini;
+        cp /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini /tmp;        
         phpenv config-rm xdebug.ini;
     fi
   - composer self-update # May help using cache for php packages.
@@ -75,11 +78,12 @@ script:
         .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
     fi
   - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
-        php --ini;
-        if [[ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]]; then
-            php --ini -c /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini;
+        if [[ -f /tmp/xdebug.ini ]]; then
+            php --ini -c /tmp/xdebug.ini;
+            php -c /tmp/xdebug.ini .travis/bin/phpunit tests;
+        else
+            php .travis/bin/phpunit tests;
         fi;
-        php .travis/bin/phpunit tests;
     fi
   # This checks that the application doesn't use dependencies with known security vulnerabilities:
   - if [[ $TRAVIS_PHP_VERSION != '5.4' ]]; then
