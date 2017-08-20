@@ -43,7 +43,7 @@ before_install:
             wget https://phar.phpunit.de/phpunit-5.7.phar --output-document=.travis/bin/phpunit;
         else
             wget https://phar.phpunit.de/phpunit.phar --output-document=.travis/bin/phpunit;
-        fi
+        fi;
         chmod a+x .travis/bin/phpunit;
         PATH=.travis/bin:$PATH;
     fi
