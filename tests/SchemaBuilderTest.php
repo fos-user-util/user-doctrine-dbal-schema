@@ -15,7 +15,7 @@ use FosUserUtil\Doctrine\DBAL\SchemaBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SchemaBuilder
+ * @covers SchemaBuilder
  */
 final class SchemaBuilderTest extends TestCase
 {
