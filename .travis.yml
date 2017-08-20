@@ -75,6 +75,10 @@ script:
         .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
     fi
   - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
+        php --ini;
+        if [[ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]]; then
+            php --ini -c /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini;
+        fi;
         php .travis/bin/phpunit tests;
     fi
   # This checks that the application doesn't use dependencies with known security vulnerabilities:
