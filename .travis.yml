@@ -37,7 +37,6 @@ before_install:
         cp /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini /tmp;        
         phpenv config-rm xdebug.ini;
     fi
-  # - composer self-update # May help using cache for php packages.
   - install --directory .travis/bin
   # - if [[ $TRAVIS_PHP_VERSION = '7.1'...
   - php .travis/bin/php-cs-fixer self-update || {
