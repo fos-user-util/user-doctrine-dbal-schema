@@ -2,10 +2,6 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/5.7/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         backupGlobals="false"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutTestsThatDoNotTestAnything="true"
-         beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
     <testsuite>
         <directory suffix="Test.php">tests</directory>
@@ -20,4 +16,10 @@
         </whitelist>
     </filter>
 </phpunit>
-<!-- beStrictAboutCoversAnnotation="true" -->
+<!--
+         backupGlobals="false"
+beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutTodoAnnotatedTests="true"
+-->
