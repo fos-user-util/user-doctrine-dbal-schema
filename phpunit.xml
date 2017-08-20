@@ -18,6 +18,12 @@
             </exclude>
         </whitelist>
     </filter>
+
+    <logging>
+        <log type="coverage-clover" target="/tmp/coverage.xml"/>
+        <log type="coverage-text"/>
+    </logging>
+
 </phpunit>
 <!--
          backupGlobals="false"
