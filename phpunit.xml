@@ -3,7 +3,6 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/5.7/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          backupGlobals="false"
-         <!-- beStrictAboutCoversAnnotation="true" -->
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
@@ -21,3 +20,4 @@
         </whitelist>
     </filter>
 </phpunit>
+<!-- beStrictAboutCoversAnnotation="true" -->
