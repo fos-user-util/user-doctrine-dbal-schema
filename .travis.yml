@@ -57,12 +57,13 @@ before_install:
   - ls /tmp
   - php --ini
   - xdebug=/home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini
-  - echo $xdebug
-  - "if [[ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]]; then
-        cat /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini;
-        cp /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini /tmp;        
-        phpenv config-rm xdebug.ini;
-    fi"
+  # - echo $xdebug
+  - if [[ -f $xdebug ]]; then cat $xdebug; cp $xdebug /tmp; phpenv config-rm xdebug.ini; fi
+  # - "if [[ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]]; then
+  #       cat /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini;
+  #       cp /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini /tmp;        
+  #       phpenv config-rm xdebug.ini;
+  #   fi"
   - install --directory .travis/bin
   - if [[ -v PHP_CS_FIXER ]]; then wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar --output-document=.travis/bin/php-cs-fixer; fi
   - if [[ -v PHPUNIT ]]; then wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT; fi
