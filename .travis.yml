@@ -16,14 +16,17 @@ matrix:
       env:
         - PHPUNIT=phpunit-5.7
         - TEST_LINT=`true`
+        - PHP_CS_FIXER`true`
     - php: 7.0
       env:
         - PHPUNIT=phpunit
         - TEST_LINT=`true`
+        - PHP_CS_FIXER`true`
     - php: 7.1
       env:
         - PHPUNIT=phpunit
         - TEST_LINT=`true`
+        - PHP_CS_FIXER`true`
     - php: 7.2
       env:
         - PHPUNIT=phpunit
@@ -68,3 +71,7 @@ before_script:
 script:
   - for f in $(find . -path './vendor' -prune -o -path './tests' -prune -o -name \*.php -print) ; do php -l $f ; done # Do this first!
   - if [[ -v TEST_LINT ]]; then for f in $(find ./tests -name \*.php -print) ; do php -l $f ; done; fi
+  - if [[ -v PHP_CS_FIXER ]]; then
+        php .travis/bin/php-cs-fixer --version;
+        php .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
+    fi
