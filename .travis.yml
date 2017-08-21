@@ -53,8 +53,10 @@ before_install:
         wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar --output-document=.travis/bin/php-cs-fixer;
         chmod a+x .travis/bin/php-cs-fixer;
     }
+  - '[ -z "$PHPUNIT" ] && echo ${PHPUNIT}'
   - '[ -z "$PHPUNIT" ] && wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT && chmod a+x .travis/bin/$PHPUNIT'
-  # - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
+
+# - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
   #       if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then
   #           wget https://phar.phpunit.de/phpunit-5.7.phar --output-document=.travis/bin/phpunit;
   #       else
