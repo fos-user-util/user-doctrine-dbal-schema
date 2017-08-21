@@ -34,8 +34,6 @@ matrix:
     - php: 7.2
     - php: nightly
 
-# env: SENSIO_SECURITY=`true`
-
 before_install:
   - echo $PHPUNIT
   - pwd
@@ -111,3 +109,6 @@ script:
 # inspirated from 
   # symfony/symfony-demo
   # TODO: https://github.com/doctrine/dbal/blob/v2.5.13/.travis.yml
+
+# env: SENSIO_SECURITY=`true`
+
