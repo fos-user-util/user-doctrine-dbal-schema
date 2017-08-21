@@ -40,3 +40,10 @@ before_install:
         cp /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini /tmp;        
         phpenv config-rm xdebug.ini;
     fi"
+  - install --directory .travis/bin
+  - [[ -v PHP_CS_FIXER ]] && wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar --output-document=.travis/bin/php-cs-fixer
+  - '[ -v PHPUNIT ] && wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT || echo "PHPUnit not downloaded!"'
+  - if [[ -v SENSIO_SECURITY ]]; then
+        wget http://get.sensiolabs.org/security-checker.phar --output-document=.travis/bin/security-checker;
+        # chmod a+x .travis/bin/security-checker;
+    fi
