@@ -89,7 +89,7 @@ script:
         .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
     fi
   # - '[ -v PHPUNIT ] && [[ -f /tmp/xdebug.ini ]] && php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests'
-  - '[ -v PHPUNIT ] && { [[ -f /tmp/xdebug.ini ]] && { php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests; }; }; || echo "PHPUnit not run"'
+  - '[ -v PHPUNIT ] && { [[ -f /tmp/xdebug.ini ]] && { php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests; } } || echo "PHPUnit not run"'
   # - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
   #       if [[ -f /tmp/xdebug.ini ]]; then
   #           php --ini -c /tmp/xdebug.ini;
