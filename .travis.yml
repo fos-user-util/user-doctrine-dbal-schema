@@ -42,7 +42,7 @@ before_install:
     fi"
   - install --directory .travis/bin
   - if [[ -v PHP_CS_FIXER ]]; then wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar --output-document=.travis/bin/php-cs-fixer; fi
-  # - '[ -v PHPUNIT ] && wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT || echo "PHPUnit not downloaded!"'
+  - '[ -v PHPUNIT ] && wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT || echo "PHPUnit not downloaded!"'
   # - if [[ -v SENSIO_SECURITY ]]; then
   #       wget http://get.sensiolabs.org/security-checker.phar --output-document=.travis/bin/security-checker;
   #       # chmod a+x .travis/bin/security-checker;
