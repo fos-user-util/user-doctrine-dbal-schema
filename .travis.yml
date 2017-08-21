@@ -104,6 +104,4 @@ script:
 
 # inspirated from 
   # symfony/symfony-demo
-  # TODO: https://github.com/doctrine/dbal/blob/v2.5.13/.travis.yml
-
-# env: SENSIO_SECURITY=`true`
+  # https://github.com/doctrine/dbal/blob/v2.5.13/.travis.yml
