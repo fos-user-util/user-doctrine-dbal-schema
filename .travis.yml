@@ -90,7 +90,7 @@ script:
     fi
   # - '[ -v PHPUNIT ] && [[ -f /tmp/xdebug.ini ]] && php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests'
   # - '[ -v PHPUNIT ] && { [[ -f /tmp/xdebug.ini ]] && { php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests; } } || echo "PHPUnit not run"'
-  - > if [[ -v PHPUNIT ]]; then
+  -   if [[ -v PHPUNIT ]]; then
           if [[ -f /tmp/xdebug.ini ]]; then
               php --ini -c /tmp/xdebug.ini;
               php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests;
