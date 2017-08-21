@@ -59,9 +59,9 @@ before_install:
   - xdebug=/home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini
   - if [[ -f $xdebug ]]; then cat $xdebug; cp $xdebug /tmp; phpenv config-rm xdebug.ini; fi
   - xdebug_php=
-  - echo $xdebug_php
+  # - echo $xdebug_php
   - if [[ -f /tmp/xdebug.ini ]]; then xdebug_php='-c /tmp/xdebug.ini'; fi
-  - echo $xdebug_php
+  # - echo $xdebug_php
 
   # - "if [[ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]]; then
   #       cat /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini;
