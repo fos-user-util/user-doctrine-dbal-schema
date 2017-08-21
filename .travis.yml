@@ -52,15 +52,16 @@ before_install:
         wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar --output-document=.travis/bin/php-cs-fixer;
         chmod a+x .travis/bin/php-cs-fixer;
     }
-  - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
-        if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then
-            wget https://phar.phpunit.de/phpunit-5.7.phar --output-document=.travis/bin/phpunit;
-        else
-            wget https://phar.phpunit.de/phpunit.phar --output-document=.travis/bin/phpunit;
-        fi;
-        chmod a+x .travis/bin/phpunit;
-        PATH=.travis/bin:$PATH;
-    fi
+  - [ -z "$PHPUNIT" ] && wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT && chmod a+x .travis/bin/$PHPUNIT
+  # - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
+  #       if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then
+  #           wget https://phar.phpunit.de/phpunit-5.7.phar --output-document=.travis/bin/phpunit;
+  #       else
+  #           wget https://phar.phpunit.de/phpunit.phar --output-document=.travis/bin/phpunit;
+  #       fi;
+  #       chmod a+x .travis/bin/phpunit;
+  #       PATH=.travis/bin:$PATH;
+  #   fi
   - if true; then
         wget http://get.sensiolabs.org/security-checker.phar --output-document=.travis/bin/security-checker;
         chmod a+x .travis/bin/security-checker;
@@ -85,14 +86,15 @@ script:
         .travis/bin/php-cs-fixer --version;
         .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
     fi
-  - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
-        if [[ -f /tmp/xdebug.ini ]]; then
-            php --ini -c /tmp/xdebug.ini;
-            php -c /tmp/xdebug.ini .travis/bin/phpunit tests;
-        else
-            php .travis/bin/phpunit tests;
-        fi;
-    fi
+  - [ -z "$PHPUNIT" ] && { [[ -f /tmp/xdebug.ini ]] && { php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests }}
+  # - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
+  #       if [[ -f /tmp/xdebug.ini ]]; then
+  #           php --ini -c /tmp/xdebug.ini;
+  #           php -c /tmp/xdebug.ini .travis/bin/phpunit tests;
+  #       else
+  #           php .travis/bin/phpunit tests;
+  #       fi;
+  #   fi
   # This checks that the application doesn't use dependencies with known security vulnerabilities:
   - if [[ $TRAVIS_PHP_VERSION != '5.4' ]]; then
         .travis/bin/security-checker security:check --end-point=http://security.sensiolabs.org/check_lock;
