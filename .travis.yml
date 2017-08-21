@@ -1,5 +1,25 @@
 ---
 sudo: false
 language: php
+matrix:
+  fast_finish: true
+  include:
+    - php: 5.4
+    - php: 5.5
+    - php: 5.6
+      env: PHPUNIT=phpunit-5.7
+    - php: 7.0
+      env: PHPUNIT=phpunit
+    - php: 7.1
+      env: PHPUNIT=phpunit
+    - php: 7.2
+      env: PHPUNIT=phpunit
+    - php: nightly
+      env: PHPUNIT=phpunit
+  allow_failures:
+    - php: 5.4
+    - php: 5.5 # needs older phpunit
+    - php: 7.2
+    - php: nightly
 before_install:
   - pwd
