@@ -44,3 +44,13 @@ before_install:
   - if [[ -v PHP_CS_FIXER ]]; then wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar --output-document=.travis/bin/php-cs-fixer; fi
   - if [[ -v PHPUNIT ]]; then wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT; fi
   - if [[ -v SENSIO_SECURITY ]]; then wget http://get.sensiolabs.org/security-checker.phar --output-document=.travis/bin/security-checker; fi
+
+install:
+  - composer validate
+  - composer install --no-scripts --no-progress --no-suggest
+  # - cp config/parameters.yml.travis config/parameters.yml
+  - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
+  - composer show
+
+before_script:
+
