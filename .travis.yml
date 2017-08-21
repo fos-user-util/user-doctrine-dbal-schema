@@ -33,7 +33,6 @@ matrix:
     - php: 5.5 # needs older phpunit
     - php: 7.2
     - php: nightly
-
 before_install:
   - echo $PHPUNIT
   - pwd
