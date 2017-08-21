@@ -75,3 +75,11 @@ script:
         php .travis/bin/php-cs-fixer --version;
         php .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
     fi
+  - if [[ -v PHPUNIT ]]; then
+        if [[ -f /tmp/xdebug.ini ]]; then
+            php --ini -c /tmp/xdebug.ini;
+            php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests;
+        else
+            php .travis/bin/$PHPUNIT tests;
+        fi;
+      fi
