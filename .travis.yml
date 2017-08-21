@@ -90,16 +90,16 @@ script:
     fi
   # - '[ -v PHPUNIT ] && [[ -f /tmp/xdebug.ini ]] && php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests'
   # - '[ -v PHPUNIT ] && { [[ -f /tmp/xdebug.ini ]] && { php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests; } } || echo "PHPUnit not run"'
-  - if [[ -v PHPUNIT ]]; then
-        if [[ -f /tmp/xdebug.ini ]]; then
-            php --ini -c /tmp/xdebug.ini;
-            php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests;
-        else
-            php .travis/bin/$PHPUNIT tests;
-        fi;
-    else
-        echo "PHPUnit not run";
-    fi
+  - > if [[ -v PHPUNIT ]]; then
+          if [[ -f /tmp/xdebug.ini ]]; then
+              php --ini -c /tmp/xdebug.ini;
+              php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests;
+          else
+              php .travis/bin/$PHPUNIT tests;
+          fi;
+      else
+          echo "PHPUnit not run";
+      fi
   # This checks that the application doesn't use dependencies with known security vulnerabilities:
   - if [[ $TRAVIS_PHP_VERSION != '5.4' ]]; then
         .travis/bin/security-checker security:check --end-point=http://security.sensiolabs.org/check_lock;
