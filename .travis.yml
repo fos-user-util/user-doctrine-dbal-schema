@@ -53,7 +53,7 @@ before_install:
         wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar --output-document=.travis/bin/php-cs-fixer;
         chmod a+x .travis/bin/php-cs-fixer;
     }
-  - '[ -v PHPUNIT ] && wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT && chmod a+x .travis/bin/$PHPUNIT || echo "PHPUnit not downloaded!"'
+  - '[ -v PHPUNIT ] && wget https://phar.phpunit.de/${PHPUNIT}.phar --output-document=.travis/bin/$PHPUNIT || echo "PHPUnit not downloaded!"'
 
 # - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
   #       if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then
@@ -89,7 +89,7 @@ script:
         .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no;
     fi
   # - '[ -v PHPUNIT ] && [[ -f /tmp/xdebug.ini ]] && php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests'
-  - '[ -v PHPUNIT ] && { [[ -f /tmp/xdebug.ini ]] && { php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests; }; }'
+  - '[ -v PHPUNIT ] && { [[ -f /tmp/xdebug.ini ]] && { php -c /tmp/xdebug.ini .travis/bin/$PHPUNIT tests || php .travis/bin/$PHPUNIT tests; }; }; || echo "PHPUnit not run"'
   # - if [[ $TRAVIS_PHP_VERSION != '5.4' && $TRAVIS_PHP_VERSION != '5.5' ]]; then
   #       if [[ -f /tmp/xdebug.ini ]]; then
   #           php --ini -c /tmp/xdebug.ini;
