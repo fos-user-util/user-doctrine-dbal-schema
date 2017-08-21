@@ -28,7 +28,13 @@ matrix:
     - php: nightly
 
 before_install:
+  - echo $PHPUNIT
   - pwd
+  - echo $HOME
+  - echo $TRAVIS_PHP_VERSION
+  - which composer
+  - ls /tmp
+  - php --ini
   - "if [[ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]]; then
         cat /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini;
         cp /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini /tmp;        
