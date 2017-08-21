@@ -102,6 +102,9 @@ script:
   - if [[ -v VENDOR_LINT ]]; then for f in $(find ./vendor -name \*.php); do php -l $f > /dev/null; done; fi
   #^ Should be the last line of install but sometimes long to execute and little can be done for errors found.
 
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
+
 # inspirated from 
   # symfony/symfony-demo
   # https://github.com/doctrine/dbal/blob/v2.5.13/.travis.yml
