@@ -31,7 +31,7 @@ final class SchemaBuilderTest extends TestCase
     {
         $this->assertInstanceOf(
             Table::class,
-            (new SchemaBuilder(new Schema()))->UserTable()
+            (new SchemaBuilder(new Schema()))->userTable()
         );
     }
 }
