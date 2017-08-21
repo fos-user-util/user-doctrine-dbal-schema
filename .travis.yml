@@ -1,6 +1,11 @@
 ---
 sudo: false
 language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 matrix:
   fast_finish: true
   include:
@@ -21,5 +26,6 @@ matrix:
     - php: 5.5 # needs older phpunit
     - php: 7.2
     - php: nightly
+
 before_install:
   - pwd
