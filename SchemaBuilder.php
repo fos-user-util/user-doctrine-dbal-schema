@@ -22,7 +22,7 @@ class SchemaBuilder
         $this->schema = $schema;
     }
 
-    public function UserTable()
+    public function userTable()
     {
         $UserTable = $this->schema->createTable('http_user');
         $UserTable->addColumn('uuid', 'guid');
