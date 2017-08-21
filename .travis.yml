@@ -10,7 +10,6 @@ matrix:
   fast_finish: true
   include:
     - php: 5.4
-      env: SENSIO_SECURITY=`true`
     - php: 5.5
       env:
         - TEST_LINT=`true`
