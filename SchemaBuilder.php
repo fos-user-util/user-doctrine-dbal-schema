@@ -27,8 +27,6 @@ class SchemaBuilder
         $UserTable = $this->schema->createTable('http_user');
         $UserTable->addColumn('uuid', 'guid');
         $UserTable->setPrimaryKey(['uuid']);
-        // $UserTable->addColumn('deleted', 'datetime', ['notnull' => false]);
-        //^ Users should not be able to delete this, probably.
         $UserTable->addColumn('username', 'string', ['length' => 180]);
         $UserTable->addColumn('username_canonical', 'string', ['length' => 180]);
         $UserTable->addUniqueIndex(['username_canonical'], 'username_canonical_unique_index'); // name probably not needed
