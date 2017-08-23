@@ -22,7 +22,8 @@ final class SchemaBuilderTest extends TestCase
     public function testCanBeCreatedFromValidSchema()
     {
         $this->assertInstanceOf(
-            SchemaBuilder::class,
+            // SchemaBuilder::class, // 5.4 < php
+            'FosUserUtil\Doctrine\DBAL\SchemaBuilder',
             new SchemaBuilder(new Schema())
         );
     }
@@ -30,7 +31,8 @@ final class SchemaBuilderTest extends TestCase
     public function testReturnsTable()
     {
         $this->assertInstanceOf(
-            Table::class,
+            // Table::class, // 5.4 < php
+            'Doctrine\DBAL\Schema\Table',
             (new SchemaBuilder(new Schema()))->userTable()
         );
     }
