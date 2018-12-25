@@ -91,8 +91,8 @@ install:
   # - cp config/parameters.yml.travis config/parameters.yml
   - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
   - composer show
-  - composer global init --stability=dev # to support PHP 7.3
-  - composer global require friendsofphp/php-cs-fixer
+  # - composer global init --stability=dev # to support PHP 7.3
+  - composer global require friendsofphp/php-cs-fixer:dev-master@dev # to support PHP 7.3
   - composer global exec --list
 
 before_script:
