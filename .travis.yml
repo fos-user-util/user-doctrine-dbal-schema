@@ -93,6 +93,8 @@ install:
   - composer show
   - composer global require friendsofphp/php-cs-fixer
   - composer global exec --list
+  - composer exec -- php-cs-fixer
+  - composer exec -- "php-cs-fixer -h"
 
 before_script:
 
@@ -100,9 +102,9 @@ script:
   - for f in $(find . -path './vendor' -prune -o -path './tests' -prune -o -name \*.php -print) ; do php -l $f ; done # Do this first!
   - if [[ -v TEST_LINT ]]; then for f in $(find ./tests -name \*.php -print); do php -l $f; done; fi
   - if [[ -v PHP_CS_FIXER ]]; then php .travis/bin/php-cs-fixer --version; fi
-  - if [[ -v PHP_CS_FIXER ]]; then composer global exec -- php-cs-fixer --version; fi
+  - if [[ -v PHP_CS_FIXER ]]; then composer global exec -- "php-cs-fixer --version"; fi
   - if [[ -v PHP_CS_FIXER ]]; then php .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
-  - if [[ -v PHP_CS_FIXER ]]; then composer global exec -- php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
+  - if [[ -v PHP_CS_FIXER ]]; then composer global exec -- "php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no"; fi
   - if [[ -v PHPUNIT ]]; then php --ini -c /tmp/xdebug.ini; php $xdebug_php .travis/bin/$PHPUNIT; fi
   # - if [[ -v PHPUNIT ]]; then
   #       if [[ -f /tmp/xdebug.ini ]]; then
