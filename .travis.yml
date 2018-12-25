@@ -93,8 +93,8 @@ install:
   - composer show
   - composer global require friendsofphp/php-cs-fixer
   - composer global exec --list
-  - composer exec -- php-cs-fixer
-  - composer exec -- "php-cs-fixer -h"
+  - composer global exec -- php-cs-fixer
+  - composer global exec -- "php-cs-fixer -h"
 
 before_script:
 
