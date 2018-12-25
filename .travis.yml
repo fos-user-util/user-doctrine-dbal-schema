@@ -91,6 +91,7 @@ install:
   # - cp config/parameters.yml.travis config/parameters.yml
   - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
   - composer show
+  - composer global init --stability=dev # to support PHP 7.3
   - composer global require friendsofphp/php-cs-fixer
   - composer global exec --list
 
@@ -102,8 +103,7 @@ script:
   # - if [[ -v PHP_CS_FIXER ]]; then php .travis/bin/php-cs-fixer --version; fi
   - if [[ -v PHP_CS_FIXER ]]; then php /home/travis/.composer/vendor/bin/php-cs-fixer --version; fi
   # - if [[ -v PHP_CS_FIXER ]]; then php .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
-  - if [[ -v PHP_CS_FIXER ]]; then php /home/travis/.composer/vendor/bin/php-cs-fixer fix --diff --dry-run -vvv --using-cache=no; fi
-  # --stop-on-violation
+  - if [[ -v PHP_CS_FIXER ]]; then php /home/travis/.composer/vendor/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
   - if [[ -v PHPUNIT ]]; then php --ini -c /tmp/xdebug.ini; php $xdebug_php .travis/bin/$PHPUNIT; fi
   # - if [[ -v PHPUNIT ]]; then
   #       if [[ -f /tmp/xdebug.ini ]]; then
