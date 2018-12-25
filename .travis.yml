@@ -95,6 +95,9 @@ install:
   - composer global exec --list
   - composer global exec -- php-cs-fixer
   - composer global exec -- "php-cs-fixer -h"
+  - ls /home/travis/.composer
+  - ls /home/travis/.composer/vendor || true
+  - ls /home/travis/.composer/vendor/bin || true
 
 before_script:
 
